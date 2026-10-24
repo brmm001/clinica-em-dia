@@ -1,2 +1,2 @@
-import type {MetadataRoute} from "next";
-export default function robots():MetadataRoute.Robots{return {rules:{userAgent:"*",...(process.env.SEO_INDEXABLE==="true"?{allow:"/",disallow:["/api/"]}:{disallow:"/"})}};}
+import type {MetadataRoute} from 'next';import {siteUrl,indexable} from '@/lib/site';
+export default function robots():MetadataRoute.Robots{return {rules:{userAgent:'*',...(indexable?{allow:'/',disallow:['/api/','/entrar','/cadastro']}:{disallow:'/'})},...(indexable?{sitemap:siteUrl+'/sitemap.xml'}:{})};}

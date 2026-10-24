@@ -1,2 +1,2 @@
-import type {MetadataRoute} from "next";
-export default function sitemap():MetadataRoute.Sitemap{const url=process.env.NEXT_PUBLIC_SITE_URL;return process.env.SEO_INDEXABLE==="true"&&url?[{url,changeFrequency:"monthly",priority:1}]:[];}
+import type {MetadataRoute} from 'next';import {siteUrl,indexable} from '@/lib/site';
+export default function sitemap():MetadataRoute.Sitemap{return indexable?['','/orcamento-odontologico','/como-fazer-orcamento-odontologico'].map(path=>({url:siteUrl+path,changeFrequency:'monthly',priority:path?0.8:1})):[];}

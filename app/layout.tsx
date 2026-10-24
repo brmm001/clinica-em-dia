@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
-import "./globals.css";
-export const metadata:Metadata={title:"Orçamento odontológico grátis em PDF | Clínica em Dia",description:"Monte um orçamento odontológico com procedimentos, entrada e parcelas. Visualize e imprima em PDF gratuitamente.",robots:{index:process.env.SEO_INDEXABLE==="true",follow:process.env.SEO_INDEXABLE==="true"}};
+import type {Metadata} from 'next';import {siteUrl,indexable} from '@/lib/site';import './globals.css';
+export const metadata:Metadata={metadataBase:new URL(siteUrl),title:{default:'Clínica em Dia | Orçamento odontológico grátis',template:'%s | Clínica em Dia'},description:'Ferramentas gratuitas para clínicas odontológicas: monte orçamentos profissionais, simule parcelas e salve em PDF.',robots:{index:indexable,follow:true},openGraph:{type:'website',locale:'pt_BR',siteName:'Clínica em Dia',title:'Clínica em Dia — Orçamentos claros. Rotinas leves.',description:'Crie seu orçamento odontológico com parcelas e PDF, gratuitamente.',images:[{url:'/opengraph-image',width:1200,height:630}]},twitter:{card:'summary_large_image',images:['/opengraph-image']}};
 export default function Layout({children}:{children:React.ReactNode}){return <html lang="pt-BR"><body>{children}</body></html>}

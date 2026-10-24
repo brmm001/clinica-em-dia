@@ -41,3 +41,19 @@ Os testes cobrem valores com desconto/entrada, entrada excessiva, cálculo Price
 Criação na Vercel bloqueada por 403 (autorização da equipe necessária).
 A integração GitHub disponível permite consultar/editar repositórios existentes, mas não expõe criação de repositório novo.
 Nenhum recurso de banco foi criado e nenhum site foi publicado.
+
+## SEO e Google — atualização
+A página inicial agora apresenta a ferramenta; o editor está em /orcamento-odontologico.
+Guia público em /como-fazer-orcamento-odontologico, páginas /entrar e /cadastro sem indexação.
+SEO_INDEXABLE=true ativa indexação de produção; previews seguem bloqueados.
+Canonical e sitemap usam NEXT_PUBLIC_SITE_URL. Ao adotar domínio próprio, atualizar essa variável.
+Dados estruturados WebApplication sem avaliações ou números de usuários inventados.
+
+Para ativar login com Google, configurar cliente OAuth Web no Google Cloud:
+- Origem: https://clinica-em-dia-iota.vercel.app
+- Redirect URI: https://clinica-em-dia-iota.vercel.app/api/auth/callback/google
+- Salvar GOOGLE_CLIENT_ID e GOOGLE_CLIENT_SECRET apenas nas variáveis de servidor da Vercel.
+- Configurar tela de consentimento e usuários de teste / publicação conforme o projeto Google.
+- Conectar Neon e aplicar migrações Better Auth antes de habilitar contas.
+- Google não está ativo sem essas credenciais; o botão mostra a indisponibilidade.
+- Revalidar com duas contas, logout e isolamento de histórico após conectar os serviços.
