@@ -1,0 +1,8 @@
+import { neon } from "@neondatabase/serverless";
+import { getAuth,ready } from "@/lib/auth";
+import { quoteSchema } from "@/lib/quote";
+export const runtime="nodejs";
+export const dynamic="force-dynamic";
+async function user(req:Request){if(!ready())return null;return (await getAuth().api.getSession({headers:req.headers}))?.user;}
+export async function GET(req:Request){try{const u=await user(req);if(!u)return Response.json({error:"Entre para acessar seus orçamentos."},{status:401});const sql=neon(process.env.DATABASE_URL!);const rows=await sql`SELECT id,payload,created_at FROM quotes WHERE owner_id=${u.id} ORDER BY created_at DESC LIMIT 100`;return Response.json(rows,{headers:{"Cache-Control":"no-store"}});}catch{return Response.json({error:"Não foi possível carregar os orçamentos."},{status:503});}}
+export async function POST(req:Request){try{if(req.headers.get("origin")!==new URL(process.env.BETTER_AUTH_URL||req.url).origin)return Response.json({error:"Origem não permitida."},{status:403});const u=await user(req);if(!u)return Response.json({error:"Entre para salvar o orçamento."},{status:401});const raw=await req.text();if(raw.length>50000)return Response.json({error:"Orçamento muito grande."},{status:413});const parsed=quoteSchema.safeParse(JSON.parse(raw));if(!parsed.success)return Response.json({error:"Confira os campos do orçamento."},{status:400});const sql=neon(process.env.DATABASE_URL!);const rows=await sql`INSERT INTO quotes(owner_id,payload) VALUES(${u.id},${JSON.stringify(parsed.data)}::jsonb) RETURNING id`;return Response.json(rows[0],{status:201});}catch{return Response.json({error:"Não foi possível salvar. Tente novamente."},{status:503});}}
