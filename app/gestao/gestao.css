@@ -1,0 +1,24 @@
+.clinic-workspace { max-width: 1500px; margin: auto; padding: clamp(16px, 4vw, 54px); }
+.clinic-heading, .clinic-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.clinic-heading { justify-content: space-between; margin-bottom: 20px; }
+.clinic-heading h1 { font-size: clamp(32px, 5vw, 54px); margin: 0; }
+.clinic-heading p { margin: 8px 0; }
+.clinic-metrics, .clinic-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 12px; }
+.clinic-metrics > div, .clinic-form, .clinic-agenda { padding: 16px; background: white; border: 1px solid #d8e4e1; border-radius: 14px; }
+.clinic-metrics dt, .clinic-muted { color: #4a625c; }
+.clinic-metrics dd { margin: 6px 0 0; font-weight: 750; font-size: 1.25rem; }
+.clinic-form { margin-bottom: 16px; }
+.clinic-form h2 { margin-top: 0; }
+.clinic-fields label { display: grid; gap: 4px; align-content: start; }
+.clinic-fields input, .clinic-fields select { min-width: 0; width: 100%; padding: 8px; border: 1px solid #9fb5ae; border-radius: 6px; background: #fff; color: #172d26; }
+.clinic-actions { margin: 12px 0; }
+.clinic-actions button, .clinic-agenda button, .clinic-card-title { cursor: pointer; }
+.clinic-actions button:not(.cta), .clinic-agenda button { padding: 8px 12px; border: 1px solid #9fb5ae; border-radius: 8px; background: white; color: #163b30; }
+.clinic-actions button[aria-pressed=true] { background: #165540; color: white; }
+.clinic-board { display: grid; grid-template-columns: repeat(7, minmax(170px, 1fr)); gap: 10px; overflow-x: auto; padding: 2px 0 12px; }
+.clinic-board section { background: #edf4f1; border-radius: 12px; padding: 10px; }
+.clinic-board h2 { font-size: .95rem; display: flex; justify-content: space-between; gap: 6px; }
+.clinic-board article { display: grid; gap: 6px; padding: 10px; background: white; border-radius: 8px; margin: 8px 0; overflow-wrap: anywhere; }
+.clinic-card-title { padding: 0; background: transparent; border: 0; color: #165540; text-align: left; font-weight: 750; text-decoration: underline; }
+.clinic-agenda > div { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid #d8e4e1; }
+.clinic-error { color: #971f24; }

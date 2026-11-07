@@ -57,3 +57,15 @@ Para ativar login com Google, configurar cliente OAuth Web no Google Cloud:
 - Conectar Neon e aplicar migrações Better Auth antes de habilitar contas.
 - Google não está ativo sem essas credenciais; o botão mostra a indisponibilidade.
 - Revalidar com duas contas, logout e isolamento de histórico após conectar os serviços.
+
+## Gestão e CRM comercial
+
+A rota `/gestao` reúne oportunidades, agenda de avaliações e retornos,
+indicadores de negociação e vínculo com os orçamentos da mesma conta.
+A avaliação e o retorno são registrados por oportunidade. Os valores do painel
+são valores comerciais registrados pela clínica.
+
+Para habilitar a tela, aplique `db/003-gestao.sql` no Neon do Clínica em Dia
+após as migrações anteriores. A rota reutiliza a sessão do Better Auth.
+No piloto, cada conta tem seus próprios registros. O atalho de WhatsApp abre
+uma conversa pelo navegador para envio manual.
